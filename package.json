@@ -1,5 +1,5 @@
 {
-  "name": "@umijs/plugin-code-gen",
+  "name": "bs-plugin-code-gen",
   "version": "0.0.1",
   "description": "比升根据swagger文档的代码生成器插件",
   "main": "lib/index.js",
@@ -17,10 +17,13 @@
     "start": "cross-env APP_ROOT=$PWD/example umi dev",
     "build": "father-build",
     "test": "umi-test",
-    "prepublishOnly": "npm run build && np --no-cleanup --yolo --no-publish"
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "father-build": "^1.22.5",
     "inquirer": "^8.2.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

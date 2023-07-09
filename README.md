@@ -1,5 +1,6 @@
 ### 插件使用指南
-npm install @umijs/plugin-code-gen
+umi3 系列 （umi4不支持）
+npm install bs-plugin-code-gen
 
 在umirc 或者 config添加以下配置 并且注释代表详细说明
 

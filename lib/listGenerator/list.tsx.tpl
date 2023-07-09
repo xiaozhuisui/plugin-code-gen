@@ -149,7 +149,6 @@ export default () => {
           {{#hasDel}}
           {
             type: 'link',
-            tooltip: '删除该项',
             confirm: '确定要删除吗？',
             props: { children: '删除', danger: true },
             action: [
