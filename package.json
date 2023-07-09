@@ -1,5 +1,5 @@
 {
-  "name": "bs-plugin-code-gen",
+  "name": "umi-plugin-bs-code-gen",
   "version": "0.0.1",
   "description": "比升根据swagger文档的代码生成器插件",
   "main": "lib/index.js",

@@ -1,12 +1,12 @@
 ### 插件使用指南
 umi3 系列 （umi4不支持）
-npm install bs-plugin-code-gen
+npm install umi-plugin-bs-code-gen
 
 在umirc 或者 config添加以下配置 并且注释代表详细说明
 
 
 ```
-bsCodeGenerate: {
+codeGenerate: {
  list: {
     // swaggerURL地址
     url:  'http://mep-api-dev.ur.com.cn/oms-ops/v2/api-docs',
