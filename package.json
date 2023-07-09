@@ -1,5 +1,5 @@
 {
-  "name": "umijs/plugin-code-gen",
+  "name": "@umijs/plugin-code-gen",
   "version": "0.0.1",
   "description": "比升根据swagger文档的代码生成器插件",
   "main": "lib/index.js",
@@ -13,9 +13,6 @@
     "lib",
     "template"
   ],
-  "publishConfig": {
-    "registry": "http://nexus.ur.com.cn/repository/npm-host"
-  },
   "scripts": {
     "start": "cross-env APP_ROOT=$PWD/example umi dev",
     "build": "father-build",
