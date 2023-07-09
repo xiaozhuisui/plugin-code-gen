@@ -1,6 +1,6 @@
 ### 插件使用指南
 umi3 系列 （umi4不支持）
-npm install umi-plugin-bs-code-gen
+yarn add umi-plugin-bs-code-gen -D
 
 在umirc 或者 config添加以下配置 并且注释代表详细说明
 

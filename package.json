@@ -1,6 +1,6 @@
 {
   "name": "umi-plugin-bs-code-gen",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "比升根据swagger文档的代码生成器插件",
   "main": "lib/index.js",
   "devDependencies": {
@@ -10,8 +10,7 @@
     "umi": "^3.1.3"
   },
   "files": [
-    "lib",
-    "template"
+    "lib"
   ],
   "scripts": {
     "start": "cross-env APP_ROOT=$PWD/example umi dev",
