@@ -42,3 +42,4 @@ bsCodeGenerate: {
  },
 },
 ```
+接下来使用命令 umi g listTpl 与 umi g formTpl 即可生成列表和表单页面
