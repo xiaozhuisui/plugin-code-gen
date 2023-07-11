@@ -60,7 +60,7 @@ export default () => {
         action: [
           {
             type: 'modalForm',
-            title: '创建',
+            title: '新增',
             fields: createFields,
             width: 980,
             itemLayout: {
@@ -77,7 +77,6 @@ export default () => {
               method: 'post',
             },
           },
-          'refreshtable',
         ],
       },
       //两者选其一 一种是modal新增 另外一种是跳往新页面新增
