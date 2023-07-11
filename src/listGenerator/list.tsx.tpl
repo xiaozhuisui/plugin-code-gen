@@ -62,6 +62,16 @@ export default () => {
             type: 'modalForm',
             title: '创建',
             fields: createFields,
+            width: 980,
+            itemLayout: {
+              span: 8,
+              labelCol: {
+                span: 8,
+              },
+              wrapperCol: {
+                span: 16,
+              },
+            },
             submit: {
               url: '{{{addPath}}}',
               method: 'post',
