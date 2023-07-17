@@ -86,13 +86,11 @@ export default () => {
       //  children: '新增',
       //  type: 'primary',
       //},
-      //action: [
+      //action:
       //  {
       //    type: 'route',
       //    path: '{{{routePath}}}',
       //  },
-      //  'refreshtable',
-      //]
       //}
       {{/hasCreate}}
     ],

@@ -46,12 +46,15 @@ export const handleFieldList = (
         const regex = /qp-(.*?)-/;
         // @ts-ignore
         const name = item.name.match(regex)[1];
+        // 如果是表单?xxx 如果是查询表格xxx
         result.name = form ? name : `qp-${name}-ge*fullDate*qp-${name}-le`;
         result.isTime = true;
       } catch (error) {
-        debugger;
+        console.warn(error)
       }
     }
+    // 将准确搜索改为模糊搜索
+    result.name=(result.name as string)?.replace("eq","like")
     result.last = index === arr.length - 1;
     return result;
   });
