@@ -31,6 +31,10 @@ export const handleFieldList = (
         "qp-createUserName-eq",
         "qp-modifyUserName-eq",
         "qp-modifyRealName-eq",
+        "sso-sessionid",
+        "x-app-id",
+        "x-isv-id",
+        "x-tenant-id"
       ].includes(item.name)
   );
   // 接下来组件处理 如果swagger有描述数据字典可以取数据字典 目前只能根据时间和input框来

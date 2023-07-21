@@ -98,7 +98,7 @@ function handleEditModal(
 function handleDelete(paths: any, delPath: string) {
   return {
     hasDel: Boolean(paths?.[delPath]),
-    delPath: delPath.replace(/\{.*?\}/, "#{record.id}"),
+    delPath: delPath?.replace(/\{.*?\}/, "#{record.id}"),
   };
 }
 

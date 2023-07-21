@@ -140,7 +140,7 @@ export default () => {
             props: { children: '查看' },
             action: {
               type: 'route',
-              path: '{{{routePath}}}/detail/#{record.id}?mode=view',
+              path: '{{{routePath}}}/#{record.id}?mode=view',
             },
           },
           {{#hasEdit}}
