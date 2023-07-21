@@ -10,19 +10,16 @@ import BsSulaForm from '@/components/businessComponent/BsSulaForm';
 },{
   path: '{{{filePath}}}/form/:id',
   hideInMenu: true,
-  name: '{{{routeName}}}-edit-form',
+  name: '{{{routeName}}}-form',
   component: '.{{{filePath}}}/form',
 }, */
 
 // 中英文对照 可根据需求更改
 /*
-   'menu.{{{routeName}}}-form': '新建{{{locale}}}',
-   'menu.{{{routeName}}}-edit-form': '{{{locale}}}',
+   'menu.{{{routeName}}}-form': '{{{locale}}}',
 */
 /*
    'menu.{{{routeName}}}-form': '{{{routeName}}}',
-   'menu.{{{routeName}}}-edit-form': 'edit-{{{routeName}}}',
-   'menu.{{{routeName}}}-form-detail': '{{{routeName}}}-detail'
 */
 
 export default (props: any) => {

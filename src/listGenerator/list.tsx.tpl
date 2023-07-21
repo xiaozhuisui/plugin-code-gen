@@ -9,7 +9,7 @@ import BsSulaQueryTable from '@/components/businessComponent/BsSulaQueryTable';
 }, */
 
 // 中英文对照 可根据需求更改
-// 'menu.{{{routeName}}}-list': '{{{locale}}}'
+// 'menu.{{{routeName}}}-list': '{{{locale}}}档案'
 // 'menu.{{{routeName}}}-list': '{{{routeName}}}'
 
 export default () => {
