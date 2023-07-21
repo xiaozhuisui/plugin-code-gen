@@ -26,16 +26,16 @@ export const handleFieldList = (
         "currentPage",
         "pageSize",
         "sorter",
-        "qp-isvId-eq",
-        "qp-isvId-eq",
-        "qp-createUserName-eq",
-        "qp-modifyUserName-eq",
-        "qp-modifyRealName-eq",
+        "isvId",
+        "createUserName",
+        "modifyUserName",
+        "modifyRealName",
         "sso-sessionid",
         "x-app-id",
         "x-isv-id",
-        "x-tenant-id"
-      ].includes(item.name)
+        "x-tenant-id",
+        "id",
+      ].some((sItem) => item.name.includes(sItem))
   );
   // 接下来组件处理 如果swagger有描述数据字典可以取数据字典 目前只能根据时间和input框来
   const finalList = filterList.map((item, index, arr) => {
@@ -54,11 +54,11 @@ export const handleFieldList = (
         result.name = form ? name : `qp-${name}-ge*fullDate*qp-${name}-le`;
         result.isTime = true;
       } catch (error) {
-        console.warn(error)
+        console.warn(error);
       }
     }
     // 将准确搜索改为模糊搜索
-    result.name=(result.name as string)?.replace("eq","like")
+    result.name = (result.name as string)?.replace("eq", "like");
     result.last = index === arr.length - 1;
     return result;
   });
