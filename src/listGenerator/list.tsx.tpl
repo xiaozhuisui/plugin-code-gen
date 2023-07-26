@@ -48,6 +48,8 @@ export default () => {
       method: 'get',
       convertParams: 'tableConvertParamsType',
       converter: 'bs-tableConvertType',
+      initialParams: {
+      },
     },
     actionsRender: [
       {{#hasCreate}}
@@ -105,6 +107,7 @@ export default () => {
           type: 'rangepicker',
           props: {
             placeholder: ['开始时间', '结束时间'],
+            format:'YYYY-MM-DD'
           },
         },
       }{{^last}},{{/last}}
