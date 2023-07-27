@@ -58,7 +58,7 @@ export const handleFieldList = (
       }
     }
     // 将准确搜索改为模糊搜索
-    result.name = (result.name as string)?.replace("eq", "like");
+    result.name = (result.name as string)?.replace("-eq", "-like");
     result.last = index === arr.length - 1;
     return result;
   });
