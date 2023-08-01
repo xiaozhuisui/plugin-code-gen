@@ -1,10 +1,39 @@
-import { fieldItem, handleFieldList, handleColumns } from "../utils";
+import { fieldItem, handleFieldList, handleColumns, columnItem } from "../utils";
 import { IApi } from "@umijs/types";
 import { Generator } from "@umijs/utils";
 import { join } from "path";
 const inquirer = require("inquirer");
 const axios = require("axios");
 const fs = require("fs");
+
+function handleCombinationList(
+  combinationList: columnItem[],
+  definitions: any,
+  originalRefString: string,
+  namePath: string[]
+) {
+  const properties = definitions[originalRefString].properties;
+  for (let key in properties) {
+    const field: { description: string;
+          format: string; type?: string; originalRef?: string } =
+      properties[key];
+    if (field.originalRef) {
+      handleCombinationList(combinationList, definitions, field.originalRef, [
+        ...namePath,
+        key,
+      ]);
+    } else {
+      console.log(key)
+      console.log(field)
+      debugger
+      combinationList.push({
+        description: field.description,
+        format:field.format,
+        name:[...namePath, key],
+      });
+    }
+  }
+}
 
 function handleCreateList(paths: any, path: string, definitions: any) {
   const fields: fieldItem[] = handleFieldList(
@@ -20,17 +49,30 @@ function handleCreateList(paths: any, path: string, definitions: any) {
   const coloums = handleColumns(
     Object.entries(
       definitions[voName]["properties"] as {
-        [key: string]: {
-          description: string;
-          format: string;
-          type: string;
-        };
+        [key: string]: columnItem;
       }
     ).map(
       (
-        item: [string, { description: string; format: string; type: string }]
-      ) => ({ name: item[0], ...item[1] })
-    )
+        item: [
+          string,
+          Omit<columnItem,'name'>
+        ]
+      ) => {
+        // 暂定是只有两层 算了 写个递归
+        if (item[1].originalRef) {
+          const combinationList: columnItem[] = [];
+          definitions[item[1].originalRef];
+          handleCombinationList(
+            combinationList,
+            definitions,
+            item[1].originalRef,
+            [item[0]]
+          );
+          return combinationList;
+        }
+        return { name: item[0], ...item[1] };
+      }
+    ).flat(Infinity) as columnItem[]
   );
   return { fields, coloums };
 }
@@ -52,8 +94,18 @@ function handleCreateModal(paths: any, addPath: string, definitions: any) {
       }
     ).map(
       (
-        item: [string, { description: string; format?: string; type: string }]
-      ) => ({ name: item[0], ...item[1] })
+        item: [
+          string,
+          {
+            description: string;
+            format?: string;
+            type?: string;
+            originalRef?: string;
+          }
+        ]
+      ) => {
+        return { name: item[0], ...item[1] };
+      }
     ) as fieldItem[],
     true
   );
@@ -121,7 +173,7 @@ export default function ({ api }: { api: IApi }) {
         deletePath,
       } = api.userConfig.codeGenerate?.list;
       // 5个东西 缺一不可
-      if ([url, path, locale, filePath, routePath].some((item) => !item)) {
+      if ([url, path, locale, filePath].some((item) => !item)) {
         console.error("参数不全，请检查！");
         // 退出程序
         process.exit(1);
@@ -163,7 +215,7 @@ export default function ({ api }: { api: IApi }) {
         console.error(err);
       }
       const { fields, coloums } = handleCreateList(paths, path, definitions);
-
+      debugger
       const { hasCreate, createFields } = handleCreateModal(
         paths,
         addPath,
@@ -178,7 +230,6 @@ export default function ({ api }: { api: IApi }) {
       );
 
       const { hasDel, delPath: finalDelPath } = handleDelete(paths, deletePath);
-      debugger;
       this.copyTpl({
         templatePath: join(__dirname, `list.tsx.tpl`),
         target: join(api.paths.absPagesPath!, filePath, `\list.tsx`),
@@ -189,7 +240,7 @@ export default function ({ api }: { api: IApi }) {
           routePath,
           locale,
           filePath,
-          routeName:filePath.substring(1).replaceAll("/","-"),
+          routeName: filePath.substring(1).replaceAll("/", "-"),
 
           addPath,
           hasCreate,

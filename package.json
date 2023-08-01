@@ -1,6 +1,6 @@
 {
   "name": "umi-plugin-bs-code-gen",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "追随根据swagger文档的代码生成器插件",
   "main": "lib/index.js",
   "devDependencies": {

@@ -10,25 +10,16 @@ import BsSulaForm from '@/components/businessComponent/BsSulaForm';
 },{
   path: '{{{filePath}}}/form/:id',
   hideInMenu: true,
-  name: '{{{routeName}}}-edit-form',
-  component: '.{{{filePath}}}/form',
-},{
-  path: '{{{filePath}}}/form/detail/:id',
-  hideInMenu: true,
-  name: '{{{routeName}}}-form-detail',
+  name: '{{{routeName}}}-form',
   component: '.{{{filePath}}}/form',
 }, */
 
 // 中英文对照 可根据需求更改
 /*
-   'menu.{{{routeName}}}-form': '新建{{{locale}}}',
-   'menu.{{{routeName}}}-edit-form': '编辑{{{locale}}}',
-   'menu.{{{routeName}}}-form-detail': '{{{locale}}}详情'
+   'menu.{{{routeName}}}-form': '{{{locale}}}',
 */
 /*
    'menu.{{{routeName}}}-form': '{{{routeName}}}',
-   'menu.{{{routeName}}}-edit-form': 'edit-{{{routeName}}}',
-   'menu.{{{routeName}}}-form-detail': '{{{routeName}}}-detail'
 */
 
 export default (props: any) => {
@@ -68,6 +59,7 @@ export default (props: any) => {
           children: mode === 'create' ? '提交' : '保存',
           type: 'primary',
         },
+        visible:mode!=='view',
         action: [
           'validateFields',
           {

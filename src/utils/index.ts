@@ -11,8 +11,9 @@ export interface fieldItem {
 export interface columnItem {
   description: string;
   format: string;
-  type: string;
-  name: string;
+  type?: string;
+  name: string | string[];
+  originalRef?: string;
 }
 
 export const handleFieldList = (
@@ -69,30 +70,31 @@ export const handleColumns = (
   columnList: columnItem[]
 ): {
   title: string;
-  key: string[] | string;
   dataIndex: string[] | string;
   render?: string;
 }[] => {
+  debugger;
   return columnList
     .filter(
       (item) =>
-        (item.name && !["id", "modifyUserId", "bg"]?.includes?.(item.name)) ||
-        item?.name?.toLowerCase()?.includes?.("id")
+        (typeof item.name === "string" &&
+          (!["id", "modifyUserId", "bg"]?.includes?.(item.name) ||
+            (item?.name as string)?.toLowerCase()?.includes?.("id"))) ||
+        Array.isArray(item.name)
     )
     .map((item) => {
       const result: {
         title: string;
-        key: string[] | string;
         dataIndex: string[] | string;
         render?: string;
       } = {
-        key: item.name,
         title: item.description,
         dataIndex: item.name,
       };
+
       if (item?.description?.includes("时间")) {
         result.render = "bs-time";
       }
-      return result;
+      return { ...result, isArray: Array.isArray(result.dataIndex) };
     });
 };

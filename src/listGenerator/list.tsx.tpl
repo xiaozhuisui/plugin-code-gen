@@ -126,9 +126,13 @@ export default () => {
     columns: [
       {{#coloums}}
       {
-        key: '{{key}}',
         title: '{{title}}',
+        {{#isArray}}
+        dataIndex: [{{#dataIndex}}'{{.}}',{{/dataIndex}}],
+        {{/isArray}}
+        {{^isArray}}
         dataIndex: '{{dataIndex}}',
+        {{/isArray}}
         {{#render}}
         render:'{{render}}'
         {{/render}}
@@ -138,6 +142,7 @@ export default () => {
         key: 'operator',
         title: '操作',
         render: [
+          {{#routePath}}
           {
             type: 'link',
             props: { children: '查看' },
@@ -146,7 +151,9 @@ export default () => {
               path: '{{{routePath}}}/#{record.id}?mode=view',
             },
           },
+          {{/routePath}}
           {{#hasEdit}}
+          {{#routePath}}
           {
             type: 'link',
             props: { children: '编辑' },
@@ -155,6 +162,7 @@ export default () => {
               path: '{{{routePath}}}/#{record.id}?mode=edit',
             },
           },
+          {{/routePath}}
           {{/hasEdit}}
           {{#hasDel}}
           {

@@ -9,7 +9,7 @@ import BsSulaQueryTable from '@/components/businessComponent/BsSulaQueryTable';
 }, */
 
 // 中英文对照 可根据需求更改
-// 'menu.{{{routeName}}}-list': '{{{locale}}}'
+// 'menu.{{{routeName}}}-list': '{{{locale}}}档案'
 // 'menu.{{{routeName}}}-list': '{{{routeName}}}'
 
 export default () => {
@@ -48,6 +48,8 @@ export default () => {
       method: 'get',
       convertParams: 'tableConvertParamsType',
       converter: 'bs-tableConvertType',
+      initialParams: {
+      },
     },
     actionsRender: [
       {{#hasCreate}}
@@ -105,6 +107,7 @@ export default () => {
           type: 'rangepicker',
           props: {
             placeholder: ['开始时间', '结束时间'],
+            format:'YYYY-MM-DD'
           },
         },
       }{{^last}},{{/last}}
@@ -123,9 +126,13 @@ export default () => {
     columns: [
       {{#coloums}}
       {
-        key: '{{key}}',
         title: '{{title}}',
+        {{#isArray}}
+        dataIndex: [{{#dataIndex}}'{{.}}',{{/dataIndex}}],
+        {{/isArray}}
+        {{^isArray}}
         dataIndex: '{{dataIndex}}',
+        {{/isArray}}
         {{#render}}
         render:'{{render}}'
         {{/render}}
@@ -135,6 +142,7 @@ export default () => {
         key: 'operator',
         title: '操作',
         render: [
+          {{#routePath}}
           {
             type: 'link',
             props: { children: '查看' },
@@ -143,7 +151,9 @@ export default () => {
               path: '{{{routePath}}}/#{record.id}?mode=view',
             },
           },
+          {{/routePath}}
           {{#hasEdit}}
+          {{#routePath}}
           {
             type: 'link',
             props: { children: '编辑' },
@@ -152,6 +162,7 @@ export default () => {
               path: '{{{routePath}}}/#{record.id}?mode=edit',
             },
           },
+          {{/routePath}}
           {{/hasEdit}}
           {{#hasDel}}
           {
