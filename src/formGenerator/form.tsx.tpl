@@ -59,6 +59,7 @@ export default (props: any) => {
           children: mode === 'create' ? '提交' : '保存',
           type: 'primary',
         },
+        visible:mode!=='view',
         action: [
           'validateFields',
           {
