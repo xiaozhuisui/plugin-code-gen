@@ -1,7 +1,7 @@
-import React,{ useEffect } from 'react';
+import React,{ useRef } from 'react';
 import { Table } from '@mep-sula/core';
 import { handleCommonTimeRender } from '@/utils/utils';
-export default function index({ value = [] }: { value?: any[] }) {
+export default function Index({ value = [] }: { value?: any[] }) {
   const tableRef: any = useRef(null);
 
   const columns = [
