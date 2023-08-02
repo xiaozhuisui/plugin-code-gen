@@ -6,6 +6,7 @@ export interface fieldItem {
   type: "string" | "integer";
   // qp-xxx-eq
   name: string;
+  originalRef?: string;
 }
 
 export interface columnItem {
@@ -73,7 +74,6 @@ export const handleColumns = (
   dataIndex: string[] | string;
   render?: string;
 }[] => {
-  debugger;
   return columnList
     .filter(
       (item) =>
@@ -98,3 +98,35 @@ export const handleColumns = (
       return { ...result, isArray: Array.isArray(result.dataIndex) };
     });
 };
+
+export function handleCombinationList(
+  combinationList: columnItem[],
+  definitions: any,
+  originalRefString: string,
+  namePath: string[]
+) {
+  const properties = definitions[originalRefString].properties;
+  for (let key in properties) {
+    const field: {
+      description: string;
+      format: string;
+      type?: string;
+      originalRef?: string;
+    } = properties[key];
+    if (field.originalRef) {
+      handleCombinationList(combinationList, definitions, field.originalRef, [
+        ...namePath,
+        key,
+      ]);
+    } else {
+      console.log(key);
+      console.log(field);
+      debugger;
+      combinationList.push({
+        description: field.description,
+        format: field.format,
+        name: [...namePath, key],
+      });
+    }
+  }
+}

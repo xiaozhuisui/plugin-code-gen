@@ -1,4 +1,4 @@
-import { fieldItem, handleFieldList, handleColumns, columnItem } from "../utils";
+import { fieldItem, handleFieldList, handleColumns, columnItem, handleCombinationList } from "../utils";
 import { IApi } from "@umijs/types";
 import { Generator } from "@umijs/utils";
 import { join } from "path";
@@ -6,34 +6,7 @@ const inquirer = require("inquirer");
 const axios = require("axios");
 const fs = require("fs");
 
-function handleCombinationList(
-  combinationList: columnItem[],
-  definitions: any,
-  originalRefString: string,
-  namePath: string[]
-) {
-  const properties = definitions[originalRefString].properties;
-  for (let key in properties) {
-    const field: { description: string;
-          format: string; type?: string; originalRef?: string } =
-      properties[key];
-    if (field.originalRef) {
-      handleCombinationList(combinationList, definitions, field.originalRef, [
-        ...namePath,
-        key,
-      ]);
-    } else {
-      console.log(key)
-      console.log(field)
-      debugger
-      combinationList.push({
-        description: field.description,
-        format:field.format,
-        name:[...namePath, key],
-      });
-    }
-  }
-}
+
 
 function handleCreateList(paths: any, path: string, definitions: any) {
   const fields: fieldItem[] = handleFieldList(
@@ -172,7 +145,7 @@ export default function ({ api }: { api: IApi }) {
         editMethodName,
         deletePath,
       } = api.userConfig.codeGenerate?.list;
-      // 5个东西 缺一不可
+      // 4个参数 缺一不可
       if ([url, path, locale, filePath].some((item) => !item)) {
         console.error("参数不全，请检查！");
         // 退出程序

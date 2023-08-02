@@ -41,6 +41,12 @@ codeGenerate: {
     filePath:  '/a/b',
     locale:'xxx表单'
  },
+  table:{
+    url:'http://mep-api-dev.ur.com.cn/items/v2/api-docs',
+    voName:'DictItemResVo',
+    filePath:'/aaa/bbb',
+    componentName:'table-info',
+  }
 },
 ```
 接下来使用命令 umi g listTpl 与 umi g formTpl 即可生成列表和表单页面

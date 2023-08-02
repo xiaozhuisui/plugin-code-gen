@@ -52,7 +52,7 @@ export default () => {
       },
     },
     actionsRender: [
-      {{#hasCreate}}
+
       {
         type: 'button',
         props: {
@@ -60,6 +60,7 @@ export default () => {
           type: 'primary',
         },
         action: [
+        {{#hasCreate}}
           {
             type: 'modalForm',
             title: '新增',
@@ -81,19 +82,22 @@ export default () => {
           },
         ],
       },
-      //两者选其一 一种是modal新增 另外一种是跳往新页面新增
-      //{
-      //type: 'button',
-      //props: {
-      //  children: '新增',
-      //  type: 'primary',
-      //},
-      //action:
-      //  {
-      //    type: 'route',
-      //    path: '{{{routePath}}}',
-      //  },
-      //}
+      {{/hasCreate}}
+      {{^hasCreate}}
+      {{#routePath}}
+      {
+      type: 'button',
+      props: {
+        children: '新增',
+        type: 'primary',
+      },
+      action:
+        {
+          type: 'route',
+          path: '{{{routePath}}}',
+        },
+      }
+      {{/routePath}}
       {{/hasCreate}}
     ],
     initialValues: {},
