@@ -1,7 +1,9 @@
-import React from 'react';
-import { Table } from 'antd';
+import React,{ useEffect } from 'react';
+import { Table } from '@mep-sula/core';
 import { handleCommonTimeRender } from '@/utils/utils';
 export default function index({ value = [] }: { value?: any[] }) {
+  const tableRef: any = useRef(null);
+
   const columns = [
     {{#coloums}}
       {
@@ -13,12 +15,17 @@ export default function index({ value = [] }: { value?: any[] }) {
         dataIndex: '{{dataIndex}}',
         {{/isArray}}
         {{#render}}
-        render:(text: any) => handleCommonTimeRender(text)
+        render:({text}: any) => handleCommonTimeRender(text)
         {{/render}}
       },
       {{/coloums}}
   ];
+
+  const config={
+    columns,
+    dataSource:value,
+  }
   return (
-    <Table dataSource={value} columns={columns} scroll={ { x: 'max-content' } } />
+    <Table {...config} ref={tableRef} />
   );
 }
