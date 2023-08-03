@@ -119,9 +119,6 @@ export function handleCombinationList(
         key,
       ]);
     } else {
-      console.log(key);
-      console.log(field);
-      debugger;
       combinationList.push({
         description: field.description,
         format: field.format,
