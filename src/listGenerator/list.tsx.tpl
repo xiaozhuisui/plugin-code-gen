@@ -52,7 +52,7 @@ export default () => {
       },
     },
     actionsRender: [
-
+      {{#hasCreate}}
       {
         type: 'button',
         props: {
@@ -60,7 +60,6 @@ export default () => {
           type: 'primary',
         },
         action: [
-        {{#hasCreate}}
           {
             type: 'modalForm',
             title: '新增',
