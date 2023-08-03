@@ -49,4 +49,4 @@ codeGenerate: {
   }
 },
 ```
-接下来使用命令 umi g listTpl 与 umi g formTpl 即可生成列表和表单页面
+接下来使用命令 umi g listTpl , umi g formTpl 或umi g tableTpl 即可生成列表和表单页面 以及table组件
