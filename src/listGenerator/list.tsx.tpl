@@ -46,10 +46,10 @@ export default () => {
     remoteDataSource: {
       url: '{{{path}}}',
       method: 'get',
-      convertParams: 'tableConvertParamsType',
-      converter: 'bs-tableConvertType',
-      initialParams: {
+      convertParams: {type:'tableConvertParamsType',initialParams: {}
       },
+      converter: 'bs-tableConvertType',
+
     },
     actionsRender: [
       {{#hasCreate}}
