@@ -3,13 +3,13 @@ import BsSulaQueryTable from '@/components/businessComponent/BsSulaQueryTable';
 
 //路由信息
 /* {
-  path: '{{{filePath}}}/list',
+  path: '/{{{filePath}}}/list',
   name: '{{{routeName}}}-list',
   component: '.{{{filePath}}}/list',
 }, */
 
 // 中英文对照 可根据需求更改
-// 'menu.{{{routeName}}}-list': '{{{locale}}}档案'
+// 'menu.{{{routeName}}}-list': '{{{locale}}}'
 // 'menu.{{{routeName}}}-list': '{{{routeName}}}'
 
 export default () => {

@@ -95,9 +95,12 @@ function handleEditModal(
   }
   const length = paths[editPath]?.[editMethodName]?.["parameters"]?.length;
   const voName =
-    paths[editPath]?.[editMethodName]?.["parameters"]?.[length - 1]?.["schema"][
-      "originalRef"
-    ];
+    paths[editPath]?.[editMethodName]?.["parameters"]?.[length - 1]?.[
+      "schema"
+    ]?.["originalRef"] ||
+    paths[editPath]?.[editMethodName]?.["parameters"]?.[length - 2]?.[
+      "schema"
+    ]?.["originalRef"];
   const editFields: fieldItem[] = handleFieldList(
     Object.entries(
       definitions[voName]["properties"] as {

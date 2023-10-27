@@ -3,13 +3,13 @@ import BsSulaQueryTable from '@/components/businessComponent/BsSulaQueryTable';
 
 //路由信息
 /* {
-  path: '{{{filePath}}}/list',
+  path: '/{{{filePath}}}/list',
   name: '{{{routeName}}}-list',
   component: '.{{{filePath}}}/list',
 }, */
 
 // 中英文对照 可根据需求更改
-// 'menu.{{{routeName}}}-list': '{{{locale}}}档案'
+// 'menu.{{{routeName}}}-list': '{{{locale}}}'
 // 'menu.{{{routeName}}}-list': '{{{routeName}}}'
 
 export default () => {
@@ -46,10 +46,10 @@ export default () => {
     remoteDataSource: {
       url: '{{{path}}}',
       method: 'get',
-      convertParams: 'tableConvertParamsType',
-      converter: 'bs-tableConvertType',
-      initialParams: {
+      convertParams: {type:'tableConvertParamsType',initialParams: {}
       },
+      converter: 'bs-tableConvertType',
+
     },
     actionsRender: [
       {{#hasCreate}}
@@ -81,19 +81,22 @@ export default () => {
           },
         ],
       },
-      //两者选其一 一种是modal新增 另外一种是跳往新页面新增
-      //{
-      //type: 'button',
-      //props: {
-      //  children: '新增',
-      //  type: 'primary',
-      //},
-      //action:
-      //  {
-      //    type: 'route',
-      //    path: '{{{routePath}}}',
-      //  },
-      //}
+      {{/hasCreate}}
+      {{^hasCreate}}
+      {{#routePath}}
+      {
+      type: 'button',
+      props: {
+        children: '新增',
+        type: 'primary',
+      },
+      action:
+        {
+          type: 'route',
+          path: '{{{routePath}}}',
+        },
+      }
+      {{/routePath}}
       {{/hasCreate}}
     ],
     initialValues: {},
